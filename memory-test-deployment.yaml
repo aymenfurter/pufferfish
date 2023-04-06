@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memory-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memory-test
+  template:
+    metadata:
+      labels:
+        app: memory-test
+    spec:
+      containers:
+      - name: memory-test
+        image: ghcr.io/aymenfurter/pufferfish:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            memory: "2Gi"
+          requests:
+            memory: "1Gi"
